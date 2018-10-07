@@ -5,7 +5,7 @@ public class BarcodeScanner {
     String barcode = null;
 
     public static void main(String[] args) {
-        BarcodeScanner barcodeScanner = new BarcodeScanner("5700426101220");
+        BarcodeScanner barcodeScanner = new BarcodeScanner("5700426101221");
         barcodeScanner.getItem();
     }
 
@@ -21,8 +21,7 @@ public class BarcodeScanner {
         String encryptedBarcode = new EnAndDecrypter().encryptBarcode(barcode);
 
         System.out.println("Encrypted barcode: " + encryptedBarcode);
-
-        System.out.println(new FoodDB().getFoodItem(encryptedBarcode));
+        System.out.println("Food item decrypted: " + new EnAndDecrypter().encrypt(new FoodDB().getFoodItem(encryptedBarcode),"nopassword"));
 
     }
 

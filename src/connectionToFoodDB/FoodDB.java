@@ -30,7 +30,9 @@ public class FoodDB {
 
                 if(decryptedBarcode.equals(foodItem[0])){
 
-                    return foodItem[1];
+                    String foodItemEncrypted = new EnAndDecrypter().encrypt(foodItem[1],"nopassword");
+                    System.out.println("Food item encrypted: " + foodItemEncrypted);
+                    return foodItemEncrypted;
                 }
             }
 

@@ -9,62 +9,37 @@ public class EnAndDecrypter implements EnAndDecoder{
     @Override
     public String encrypt(String strToEncrypt, String secret) {
 
-        int rot = 20;
-        String text = "milk";
-
-        StringBuffer result = new StringBuffer();
-
-        for (int i=0; i<text.length(); i++)
-        {
-            if (Character.isUpperCase(text.charAt(i)))
-            {
-                char ch = (char)(((int)text.charAt(i) +
-                        rot - 65) % 26 + 65);
-                result.append(ch);
-            }
-            else
-            {
-                char ch = (char)(((int)text.charAt(i) +
-                        rot - 97) % 26 + 97);
-                result.append(ch);
-            }
-        }
-
-        String encryptedItem = result.toString();
-
-        return encryptedItem;
-
+        return rot20(strToEncrypt);
     }
 
     @Override
     public String decrypt(String strToDecrypt, String secret) {
 
-        int rot = 20;
-        String text = "milk";
+        return rot20(strToDecrypt);
+    }
+
+    public String rot20(String rotText){
 
         StringBuffer result = new StringBuffer();
 
-        for (int i=0; i<text.length(); i++)
+        for (int i=0; i<rotText.length(); i++)
         {
-            if (Character.isUpperCase(text.charAt(i)))
+            if (Character.isUpperCase(rotText.charAt(i)))
             {
-                char ch = (char)(((int)text.charAt(i) +
-                        rot - 65) % 26 + 65);
+                char ch = (char)(((int)rotText.charAt(i) +
+                        13 - 65) % 26 + 65);
                 result.append(ch);
             }
             else
             {
-                char ch = (char)(((int)text.charAt(i) +
-                        rot - 97) % 26 + 97);
+                char ch = (char)(((int)rotText.charAt(i) +
+                        13 - 97) % 26 + 97);
                 result.append(ch);
             }
         }
 
-        String decryptedItem = result.toString();
-
-        return decryptedItem;
+        return result.toString();
     }
-
 
     public String encryptBarcode(String barcode){
 
