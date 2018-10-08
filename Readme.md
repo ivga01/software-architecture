@@ -1,5 +1,5 @@
 # Prototypes for stakeholder meeting
-# SRC for both foodDB conenction and connection to supermarket
+SRC for both foodDB conenction and connection to supermarket
 
 ## Java Version
 9.0
