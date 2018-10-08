@@ -3,21 +3,40 @@ package connectionToFoodDB;
 
 import connectionToSupermarket.EnAndDecoder;
 
+/**
+ * Class that handles the en and decryptions for the connection of the Food DB
+ */
 public class EnAndDecrypter implements EnAndDecoder{
 
-
+    /**
+     * Encrypter that encrypts the food item
+     * @param strToEncrypt the food item that needs to be encrypted
+     * @param secret is if the customer wishes a password in the future
+     * @return encrypted food item
+     */
     @Override
     public String encrypt(String strToEncrypt, String secret) {
 
         return rot20(strToEncrypt);
     }
 
+    /**
+     * Decrypter that encrypts the food item
+     * @param strToDecrypt the food item that needs to be decrypted
+     * @param secret is if the customer wishes a password in the future
+     * @return decrypted food item
+     */
     @Override
     public String decrypt(String strToDecrypt, String secret) {
 
         return rot20(strToDecrypt);
     }
 
+    /**
+     * A rot20 method, that rotate the letters to make a soft en- decryption
+     * @param rotText the food item that needs a rotation of the letters
+     * @return the rotated text
+     */
     public String rot20(String rotText){
 
         StringBuffer result = new StringBuffer();
@@ -41,6 +60,11 @@ public class EnAndDecrypter implements EnAndDecoder{
         return result.toString();
     }
 
+    /**
+     * This method encrypts the barcode
+     * @param barcode barcode that needs to be encrypted
+     * @return encrypted barcode
+     */
     public String encryptBarcode(String barcode){
 
         barcode = barcode.replace("0","e");
@@ -57,6 +81,11 @@ public class EnAndDecrypter implements EnAndDecoder{
         return barcode;
     }
 
+    /**
+     * This method decrypts the barcode
+     * @param barcode barcode that needs to be decrypted
+     * @return decrypted barcode
+     */
     public String decryptBarcode(String barcode){
 
         barcode = barcode.replace("e","0");

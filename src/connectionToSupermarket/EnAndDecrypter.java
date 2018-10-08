@@ -8,7 +8,9 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
-
+/**
+ * En- and decrypter class that's handling all en- and decryption
+ */
 public class EnAndDecrypter implements connectionToSupermarket.EnAndDecoder {
 
     private SecretKeySpec secretKey;
@@ -18,11 +20,18 @@ public class EnAndDecrypter implements connectionToSupermarket.EnAndDecoder {
         setKey(key);
     }
 
+    /**
+     * This method encrypts the user data
+     * @param strToEncrypt the userdata before encryption
+     * @param secret the secret key being used for the encryption
+     * @return either an encrypted string or null
+     */
     public String encrypt(String strToEncrypt, String secret)
     {
         try
         {
             setKey(secret);
+            //Cipher being used
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
@@ -34,11 +43,18 @@ public class EnAndDecrypter implements connectionToSupermarket.EnAndDecoder {
         return null;
     }
 
+    /**
+     * This method decrypts the user data
+     * @param strToDecrypt the userdata before decryption
+     * @param secret the secret key being used for the encryption
+     * @return either a decrypted string or null
+     */
     public String decrypt(String strToDecrypt, String secret)
     {
         try
         {
             setKey(secret);
+            //cipher being used
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
@@ -50,6 +66,10 @@ public class EnAndDecrypter implements connectionToSupermarket.EnAndDecoder {
         return null;
     }
 
+    /**
+     * Making a key to being used for en-and decryption
+     * @param myKey key being used for en-and decryption
+     */
     public void setKey(String myKey)
     {
         MessageDigest sha = null;
